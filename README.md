@@ -11,11 +11,12 @@ python -m pip install --upgrade setuptools
 python -m pip install rasa
 
 conda deactivate
-=============================================
+
+
 Git setup
 =============================================
 conda install openssh
-=============================================
+
 Rasa setup
 =============================================
 rasa init
