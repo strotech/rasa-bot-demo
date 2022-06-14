@@ -1,0 +1,79 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - bot_challenge
+  - state_product
+
+responses:
+  utter_inquire_product:
+  - text: "Hey! Which product would you be interested in : Insurance / Reimbursement?"
+
+  # utter_cheer_up:
+  # - text: "Here is something to cheer you up:"
+  #   image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_confirmation:
+  - text: "Great Choice! In order to provide you {product}, I need some details about you."
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_ask_insurance_form_name:
+  - text: "Please state your name, Superhero!"
+
+  utter_ask_insurance_form_year:
+  - text: "Which year did you enter into action?"
+
+  utter_ask_reimbursement_form_name:
+  - text: "Please state your name, Superhero!"
+
+  utter_ask_reimbursement_form_amount:
+  - text: "How much do you want to be reimbursed?"
+
+entities:
+  - interested_product
+  - superhero_name
+
+slots:
+  product:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: interested_product  
+  name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: superhero_name
+  year:
+    type: any
+    mappings:
+    - type: from_text
+  amount:
+    type: any
+    mappings:
+    - type: from_text
+
+forms:
+  insurance_form:
+    required_slots:
+    - name                   # utter_ask_<form_name>_<slot_name>
+    - year
+
+  reimbursement_form:
+    required_slots:
+    - name
+    - amount
+
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

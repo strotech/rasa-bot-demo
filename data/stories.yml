@@ -1,0 +1,19 @@
+version: "3.1"
+
+stories:
+
+- story: Insurance Path
+  steps:
+  - intent: greet                       # Hi
+  - action: utter_inquire_product       # Which product you need?
+  - intent: state_product               # I need insurance   
+  - action: utter_confirmation          # Great choice
+  - active_loop: insurance_form         # Enter name, Enter first appearance
+
+- story: Reimbursement path
+  steps:
+  - intent: greet
+  - action: utter_inquire_product
+  - intent: state_product
+  - action: utter_confirmation
+  - active_loop: reimbursement_form
